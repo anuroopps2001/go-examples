@@ -49,15 +49,52 @@ func main() {
 	fmt.Print(deckOfCards)
 
 	// setting another variable for another function called countCards defined in deck.go
-	totalNumberOfCards := countCards(deckOfCards)
+	// totalNumberOfCards := countCards(deckOfCards)
+	totalNumberOfCards := deckOfCards.countCards() // calling methods which are defined with receivers.
 	fmt.Println("Total number of cards: ", totalNumberOfCards)
 
-	fmt.Println("The last card in the deck is: ", lastCard(deckOfCards))
+	// calling a method using receiver
+	lastCardOfDeck := deckOfCards.lastCard()
+	fmt.Println("The last card in the deck is: ", lastCardOfDeck)
 
 	// storing the function output into variable by calling the function with required args
-	firstCardOfDeck := firstCard(deckOfCards)
+	//firstCardOfDeck := firstCard(deckOfCards)
+	firstCardOfDeck := deckOfCards.firstCard()
 
 	fmt.Println("The first card in the deck is: ", firstCardOfDeck)
 
-	printCards(deckOfCards)
+	/* printCards(deckOfCards) */
+
+	deckOfCards.printCards()
+
+	// because along with dealOfDeck function, im not passing any receiver
+	// dealOfDeck function returns 2 values when we call that and both are of type deck
+	hand, remainingDeck := dealOfDeck(deckOfCards, 5)
+	/* fmt.Println(hand)  // this is valid
+	fmt.Println(remainingDeck)   // this is also valid */
+	hand.printCards()
+	remainingDeck.printCards()
+
+	// converting string into slice of bytes i,e byte slice
+	fmt.Println("Byte slice value of string is :", []byte("Hi there")) // byte slice also called as slice of bytes calculation
+
+	fmt.Println(deckOfCards.toString())
+
+	// to save a list of cards into local system
+	deckOfCards.saveTofile("my_decK_of_cards")
+
+	// calling newDeckFromFile function
+	// calling newDeckFromFile("my_decK_of_cards") this way works, but it doesn't print the values properly
+	// That;s the reason calling printCards() function which expects input of type 'deck'
+	/*  This also works, anyway we call that
+	newDeckFile := newDeckFromFile("my_decK_of_cards")
+	newDeckFile.printCards()
+	*/
+	newDeckFromFile("my_decK_of_cards").printCards()
+
+	// shuffle the deck and store shuffled data into deckOfCards()
+	deckOfCards.shuffle()
+
+	// now we use the shuffled deckOfCards to call printCards function again
+	deckOfCards.printCards()
 }
