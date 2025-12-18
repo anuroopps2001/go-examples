@@ -1,7 +1,6 @@
 # Go Fundamentals – Clean & Practical Notes
 
-This document summarizes key Go concepts with clear explanations and practical examples.  
-No emojis, no noise — just clean, easy‑to‑read notes.
+This document summarizes key Go concepts with clear explanations and practical examples. 
 
 ---
 
