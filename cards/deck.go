@@ -45,9 +45,12 @@ import (
 	"strings" // importing strings package to join slice of strings into single string separated by ',' as per our requirement
 )
 
-// custom types
-// creating a new custom type called deck which basically a slice of strings
-// think of this like lable i.e deck = []string
+/*
+custom types
+creating a new custom type called deck which basically a slice of strings
+think of this like lable i.e deck = []string
+Also, we think, deck here as an abstraction of slice of strings []string
+*/
 type deck []string
 
 // creating new function with return type of slice i,e []string and because return type is used with the function,
@@ -154,11 +157,29 @@ That's why inside printCards() function, under for loop, we used "for i, card :=
 because now cards variable replaced by receiver defined with 'd'
 */
 
-func dealOfDeck(d deck, handSize int) (deck, deck) { // we should call this function with first arg being type deck and second arg being type int
+func dealOfDeck(d deck, handSize int) (deck, deck) { // we should call this function with first arg being type deck and
+	// second arg being type int
 	// and this function returns 2 values of both of type deck and that's what (deck, deck) mean at the function declaration
 
 	return d[:handSize], d[handSize:]
 }
+
+// The above dealOfDeck function, can also be written as
+/*
+func (d deck) dealOfDeck(handSize int) (deck deck) {   // This is method, cuz we are using receiver
+return d[:handSize], d[handSize:]
+}
+
+and call this function inside main.go as, deckOfCards.dealOfDeck(5)
+
+BUT :-
+
+Use a method when the operation is about the deck itself
+— especially when it modifies that deck or represents a natural behavior of that deck.
+
+Use a function when the operation is not a natural behaviour of the deck,
+or when the operation produces new values instead of modifying the original deck.
+*/
 
 // converting deck into string using byte slice concept
 func (d deck) toString() string {
