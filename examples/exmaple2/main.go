@@ -1,6 +1,9 @@
 package main
 
+import "fmt"
+
 func main() {
 	nums := IntSlice{15, 2, 3}
-	nums.sum()
+	fmt.Println(nums.sum())
+
 }

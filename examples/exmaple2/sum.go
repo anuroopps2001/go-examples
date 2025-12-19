@@ -1,13 +1,11 @@
 package main
 
-import "fmt"
-
 type IntSlice []int
 
-func (i IntSlice) sum() {
+func (i IntSlice) sum() int {
 	value := 0
 	for _, val := range i {
 		value = value + val
 	}
-	fmt.Println(value)
+	return value
 }
