@@ -1,0 +1,3 @@
+os.txt file
+Hello from file storage
+Hello from file storage
