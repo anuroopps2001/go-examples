@@ -17,9 +17,10 @@ func main() {
 		go producer(i, ch, &wg)
 	}
 	// Function literal
-	go func() { // waiter goroutine
+	go func() { // waiter child goroutine
 		wg.Wait()
-		close(ch)
+		close(ch) // since multiple goroutines sending data, we need to close the channel on the new goroutine,
+		// where wait() is functional
 	}()
 
 	for v := range ch { // Receiving data from channels
