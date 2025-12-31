@@ -43,7 +43,8 @@ func main() {
 
 func worker(goroutineId int, response chan int, wg *sync.WaitGroup) {
 	defer wg.Done()
-	time.Sleep(time.Duration(goroutineId) * time.Second)
-	fmt.Println("goroutine", goroutineId, "sending")
-	response <- goroutineId * 10 //3 child goroutines will send data into single channel
+	time.Sleep(time.Duration(goroutineId) * time.Second) // blocks only the current goroutine, not the whole program.
+
+	response <- goroutineId * 10 //3 child goroutines will send data into same channel
+	fmt.Println("goroutine", goroutineId, "sent", goroutineId*10)
 }
