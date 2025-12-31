@@ -17,6 +17,7 @@ func main() {
 	// channel creation to allow communicatiin with type of data being 'string'
 	// string type channels allow, communication between goroutines is expected to be of type string
 	c := make(chan string)
+
 	for _, link := range links { // start multiple child go routines to work on different links by calling checkLink function
 		// Pass the channel variable from where main goroutine is creating the child goroutines
 		go checkLink(link, c) // go keyword is used to create child goroutines by main goroutine
